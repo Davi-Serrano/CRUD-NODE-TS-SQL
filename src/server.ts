@@ -1,5 +1,4 @@
 import express from 'express'
-import "./database/mongo"
 import { router } from './routes';
 
 const port = process.env.PORT || 3333

@@ -1,13 +1,8 @@
-import { UserModel } from "../../../../database/UserSchema";
 import { User } from "../../model/user";
 import { IMongoDBRepository } from "../IMongoDBRepository";
 import {  UserDTO, UserUpdateNameDTO } from "../IUserRepository";
 
 //singleton
-
-
-
-
 
 
 class UsersRepository implements IMongoDBRepository{
@@ -36,23 +31,23 @@ class UsersRepository implements IMongoDBRepository{
             password
         })
 
-        await UserModel.create(user);
+        this.repository.push(user)
+
     }
 
     async getUsers(){
-        const AllUsers = await UserModel.find()
 
-        return AllUsers
+        return this.repository
     }
 
 
     async updateName({name, actualName}: UserUpdateNameDTO){
-        await UserModel.findOneAndUpdate({name}, {name: actualName}, {new: true});
 
     }
 
     async deleteUser(name: string){
-         await UserModel.deleteOne({name})
+            
+
     }
 
 }

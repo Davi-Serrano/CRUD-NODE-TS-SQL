@@ -1,5 +1,4 @@
 import { Router } from "express"
-import { UserModel } from "../database/UserSchema";
 import { UsersRepository } from "../modules/user/repositories/implemantations/userRepository";
 import { createUserController } from "../modules/user/useCases/createUser";
 import { deleteUserController } from "../modules/user/useCases/deleteUser";
