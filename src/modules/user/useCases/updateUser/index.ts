@@ -2,10 +2,13 @@ import { UsersRepository } from "../../repositories/implemantations/userReposito
 import { UpdateUserController } from "./updateUserController";
 import { UpdateUserUseCase } from "./updateUserUseCase";
 
-const userReposiotry = UsersRepository.getInstance()
+export default (): UpdateUserController=> {
+
+const userReposiotry = new UsersRepository()
 
 const updateUserUseCase = new UpdateUserUseCase(userReposiotry)
 
 const updateUserController = new UpdateUserController(updateUserUseCase)
 
-export { updateUserController };
+return updateUserController 
+};

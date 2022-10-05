@@ -9,22 +9,12 @@ import {  UserDTO, UserUpdateNameDTO } from "../IUserRepository";
 class UsersRepository implements IPostgreSQLDBRepository{
     private repository: Repository<User>
 
-    private static INSTANCE: UsersRepository;
-
-    private constructor(){
+    constructor(){
         this.repository = getRepository(User)
     }
 
-    public static getInstance(): UsersRepository{
 
-        if(!UsersRepository.INSTANCE){
-            UsersRepository.INSTANCE = new UsersRepository()
-        }
-
-        return UsersRepository.INSTANCE;
-    }
-
-   async create({name, password}: UserDTO){
+    async create({name, password}: UserDTO){
         const user = this.repository.create({
             name,
             password

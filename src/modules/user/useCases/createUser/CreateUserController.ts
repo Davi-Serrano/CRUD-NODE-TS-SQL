@@ -4,18 +4,11 @@ import { CreateUserUseCase } from "./CreateUserUseCase";
 class CreateUserController {
     constructor(private createUserUseCase: CreateUserUseCase) {}
 
-    handle(req: Request, res: Response){
+    async  handle(req: Request, res: Response): Promise<Response>{
         const { name, password } = req.body.user
+        await this.createUserUseCase.execute({name, password})
         
-        try{
-            this.createUserUseCase.execute({name, password})
-            res.sendStatus(201)
-        }
-        catch(err){
-            console.log(err)
-            return res.sendStatus(400)
-        }
-   
+        return res.sendStatus(201)
     }
 }
 

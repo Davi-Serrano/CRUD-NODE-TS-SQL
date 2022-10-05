@@ -3,11 +3,12 @@ import { UsersRepository } from "../../repositories/implemantations/userReposito
 import { ListUsersController } from "./listUserController";
 import { ListUsersUseCase } from "./listUserUseCase";
 
+export default (): ListUsersController=> {
+    const userReposiotry = new UsersRepository()
 
-const userReposiotry = UsersRepository.getInstance()
+    const listAllUsersUseCase = new ListUsersUseCase(userReposiotry)
 
-const listAllUsersUseCase = new ListUsersUseCase(userReposiotry)
+    const listAllUsersController = new ListUsersController(listAllUsersUseCase);
 
-const listAllUsersController = new ListUsersController(listAllUsersUseCase);
-
-export { listAllUsersController };
+return listAllUsersController 
+};
