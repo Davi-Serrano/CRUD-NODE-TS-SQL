@@ -1,8 +1,8 @@
-import { IMongoDBRepository } from "../../repositories/IMongoDBRepository";
+import { IPostgreSQLDBRepository } from "../../repositories/IPostgreSQLDBRepository";
 
 
 class DeleteUserUseCase {
-    constructor(private userRepository: IMongoDBRepository){}
+    constructor(private userRepository: IPostgreSQLDBRepository){}
 
     execute(name: string){
         this.userRepository.deleteUser(name)

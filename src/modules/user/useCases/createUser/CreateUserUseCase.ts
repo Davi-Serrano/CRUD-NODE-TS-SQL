@@ -1,5 +1,4 @@
-import { IMongoDBRepository } from "../../repositories/IMongoDBRepository";
-import { IUserReposioty } from "../../repositories/IUserRepository";
+import { IPostgreSQLDBRepository } from "../../repositories/IPostgreSQLDBRepository";
 
 interface IRequest {
     name: string;
@@ -7,7 +6,7 @@ interface IRequest {
 }
 
 class CreateUserUseCase{
-    constructor(private userReposiotry: IMongoDBRepository){}
+    constructor(private userReposiotry: IPostgreSQLDBRepository){}
 
     execute({ name, password}: IRequest): void{
 

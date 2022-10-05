@@ -1,17 +1,18 @@
+import { getRepository, Repository } from "typeorm";
 import { User } from "../../model/user";
-import { IMongoDBRepository } from "../IMongoDBRepository";
+import { IPostgreSQLDBRepository } from "../IPostgreSQLDBRepository";
 import {  UserDTO, UserUpdateNameDTO } from "../IUserRepository";
 
 //singleton
 
 
-class UsersRepository implements IMongoDBRepository{
-    private repository: any
+class UsersRepository implements IPostgreSQLDBRepository{
+    private repository: Repository<User>
 
     private static INSTANCE: UsersRepository;
 
     private constructor(){
-        this.repository = [];
+        this.repository = getRepository(User)
     }
 
     public static getInstance(): UsersRepository{
@@ -24,20 +25,19 @@ class UsersRepository implements IMongoDBRepository{
     }
 
    async create({name, password}: UserDTO){
-        const user = new User()
-
-        Object.assign(user,{
+        const user = this.repository.create({
             name,
             password
-        })
+        });
 
-        this.repository.push(user)
+        await this.repository.save(user);
 
     }
 
     async getUsers(){
+        const all = await this.repository.find()
 
-        return this.repository
+        return all
     }
 
 
