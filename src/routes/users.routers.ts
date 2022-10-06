@@ -1,5 +1,5 @@
 import { Router } from "express"
-import  createUserController  from "../modules/user/useCases/createUser";
+import  {CreateUserController}  from "../modules/user/useCases/createUser/CreateUserController";
 import  deleteUserController  from "../modules/user/useCases/deleteUser";
 import  listAllUsersController  from "../modules/user/useCases/readUsers";
 import  updateUserController  from "../modules/user/useCases/updateUser";
@@ -12,10 +12,10 @@ usersRoutes.get("/", (req, res)=>{
     return listAllUsersController().handle(req, res);
  });
  
- usersRoutes.post("/", (req, res)=>{
-  console.log('Reiniciando com sucesso ');
-    return createUserController().handle(req, res);
- });
+
+ const createUserController = new CreateUserController()
+
+ usersRoutes.post("/", createUserController.handle);
  
 
  usersRoutes.patch("/", (req, res)=>{
