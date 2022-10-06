@@ -10,12 +10,12 @@ interface IRequest {
 class CreateUserUseCase{
     constructor(
         @inject("UsersRepository")
-        private userReposiotry: IPostgreSQLDBRepository){}
+        private userReposiotry: IPostgreSQLDBRepository
+    ){}
 
-    async execute({ name, password}: IRequest): Promise<void>{
-        
+    async execute({ name, password}: IRequest): Promise<void>{    
 
-        await this.userReposiotry.create({name, password});
+    await this.userReposiotry.create({name, password});
     }
 }
 
