@@ -1,3 +1,4 @@
+import { hash } from "bcryptjs";
 import { inject, injectable } from "tsyringe"; 
 import { IPostgreSQLDBRepository } from "../../repositories/IPostgreSQLDBRepository";
 
@@ -13,9 +14,12 @@ class CreateUserUseCase{
         private userReposiotry: IPostgreSQLDBRepository
     ){}
 
+    
     async execute({ name, password}: IRequest): Promise<void>{    
+    
+    const passwordHash =  await hash(password, 8)
 
-    await this.userReposiotry.create({name, password});
+    await this.userReposiotry.create({name, password: passwordHash});
     }
 }
 

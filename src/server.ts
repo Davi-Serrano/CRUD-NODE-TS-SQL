@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(router);
 
 app.listen((port), ()=>{
-    console.log('Server Rodando  teste de novo na  porta :', 3333);
+    console.log('Server Rodando  na  porta ', port);
 })
 
 //
