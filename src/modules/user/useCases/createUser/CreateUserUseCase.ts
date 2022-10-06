@@ -1,4 +1,4 @@
-import { inject, injectable } from "tsyringe/dist/typings/decorators"; 
+import { inject, injectable } from "tsyringe"; 
 import { IPostgreSQLDBRepository } from "../../repositories/IPostgreSQLDBRepository";
 
 interface IRequest {
