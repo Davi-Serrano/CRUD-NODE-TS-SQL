@@ -1,5 +1,6 @@
 import { hash } from "bcryptjs";
 import { inject, injectable } from "tsyringe"; 
+import { AppError } from "../../../../erros/appError";
 import { IPostgreSQLDBRepository } from "../../repositories/IPostgreSQLDBRepository";
 
 interface IRequest {
@@ -19,7 +20,7 @@ class CreateUserUseCase{
         const user = await this.userReposiotry.findByName(name);
 
         if(user){
-            throw new Error("User already Exists@!")
+            throw new AppError("User already Exists!", )
         }
     
         const passwordHash =  await hash(password, 8)

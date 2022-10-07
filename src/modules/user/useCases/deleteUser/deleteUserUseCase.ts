@@ -4,8 +4,8 @@ import { IPostgreSQLDBRepository } from "../../repositories/IPostgreSQLDBReposit
 class DeleteUserUseCase {
     constructor(private userRepository: IPostgreSQLDBRepository){}
 
-    execute(name: string){
-        this.userRepository.deleteUser(name)
+    async execute(name: string){
+        await this.userRepository.deleteUser(name)
     }
 }
 

@@ -7,7 +7,6 @@ class ListUsersUseCase {
     async execute(): Promise<User[]>{
         const allUsers = await this.userRepository.getUsers()
 
-
         return allUsers
     }
 }
