@@ -24,12 +24,23 @@ class UsersRepository implements IPostgreSQLDBRepository{
 
     }
 
-    async getUsers(){
+    async getUsers():Promise<User[]>{
         const all = await this.repository.find()
 
         return all
     }
 
+    async findById(id: string): Promise<User>{
+        const user = await this.repository.findOne(id) as User;
+        
+        return user;
+    }
+
+    async findByName(name: string): Promise<User>{
+        const user = await this.repository.findOne({name}) as User;
+        
+        return user;
+    }
 
     async updateName({name, actualName}: UserUpdateNameDTO){
 

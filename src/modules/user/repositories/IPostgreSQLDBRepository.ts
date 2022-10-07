@@ -13,6 +13,8 @@ interface UserUpdateNameDTO{
 interface IPostgreSQLDBRepository{
     create({name, password}: UserDTO): Promise<void>;
     getUsers(): Promise<User[]>;
+    findById(id: string): Promise<User>;
+    findByName(id: string): Promise<User>;
     deleteUser(name:string): Promise<void>;
     updateName({name, actualName}: UserUpdateNameDTO): Promise<void>;
 }

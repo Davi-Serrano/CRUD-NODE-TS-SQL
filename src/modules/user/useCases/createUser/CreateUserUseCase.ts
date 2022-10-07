@@ -14,12 +14,17 @@ class CreateUserUseCase{
         private userReposiotry: IPostgreSQLDBRepository
     ){}
 
-    
-    async execute({ name, password}: IRequest): Promise<void>{    
-    
-    const passwordHash =  await hash(password, 8)
+    async execute({ name, password}: IRequest): Promise<void>{   
+        
+        const user = await this.userReposiotry.findByName(name);
 
-    await this.userReposiotry.create({name, password: passwordHash});
+        if(user){
+            throw new Error("User already Exists@!")
+        }
+    
+        const passwordHash =  await hash(password, 8)
+
+        await this.userReposiotry.create({name, password: passwordHash});
     }
 }
 
