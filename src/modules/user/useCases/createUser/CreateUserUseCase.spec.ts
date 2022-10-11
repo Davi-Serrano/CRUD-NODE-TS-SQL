@@ -3,7 +3,7 @@ import { UsersRepositoryInMemory } from "../../repositories/in-memory/UsersRepos
 import { CreateUserUseCase } from "./CreateUserUseCase";
 
 let createUserUseCase: CreateUserUseCase;
-let usersRepositoryInMemory : UsersRepositoryInMemory
+let usersRepositoryInMemory : UsersRepositoryInMemory;
 
 describe("Create a User", ()=>{
     beforeEach(()=>{
@@ -23,8 +23,6 @@ describe("Create a User", ()=>{
         });
 
         const userCreated = await usersRepositoryInMemory.findByName(user.name);
-
-        console.log('userCreated :>> ', userCreated);
 
         expect(userCreated).toHaveProperty("id");
     })
