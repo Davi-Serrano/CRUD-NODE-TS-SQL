@@ -34,8 +34,10 @@ class UsersRepositoryInMemory implements IPostgreSQLDBRepository{
         return user;
     }
 
-    async deleteUser(name: string): Promise<void> {
-        
+    async deleteUser(user: User): Promise<void> {
+        const userWillBeDelete= this.users.indexOf(user);
+
+        this.users.splice(userWillBeDelete, 1);
     }
 
     updateName({ name, actualName }: UserUpdateNameDTO): Promise<void> {
