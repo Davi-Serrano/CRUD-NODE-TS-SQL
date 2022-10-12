@@ -46,9 +46,8 @@ class UsersRepository implements IPostgreSQLDBRepository{
 
     }
 
-    async deleteUser(name: string){
-            
-
+    async deleteUser(user:User){
+        await this.repository.delete(user);
     }
 
 }

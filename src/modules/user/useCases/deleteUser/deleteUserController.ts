@@ -6,9 +6,9 @@ class DeleteUserController {
     constructor(private deleteUserUseCase: DeleteUserUseCase){}
 
     handle(req: Request, res: Response){
-        const { name } = req.body.user
+        const user = req.body.user
 
-        this.deleteUserUseCase.execute(name)
+        this.deleteUserUseCase.execute(user)
 
         res.sendStatus(201)
     }

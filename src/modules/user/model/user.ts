@@ -12,13 +12,18 @@ class User{
     @Column()
     password!: string;
 
+    @Column()
+    admin!: boolean;
+
     @CreateDateColumn()
     created_at!: Date;
 
     constructor(){
 
         if(!this.id){
-            this.id = uuidv4()
+            this.id = uuidv4();
+            this.admin = false;
+
         }
     }
 
