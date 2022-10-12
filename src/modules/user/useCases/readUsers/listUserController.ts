@@ -9,7 +9,7 @@ class ListUsersController {
      
         const allUsers = await this.listAllUsersUseCase.execute();
         
-        return res.send(200).json(allUsers)
+        return res.setHeader("token", "aceepted").json(allUsers)
         
     }
 }
