@@ -34,8 +34,8 @@ class UsersRepositoryInMemory implements IPostgreSQLDBRepository{
         return user;
     }
 
-    deleteUser(name: string): Promise<void> {
-        throw new Error("Method not implemented.");
+    async deleteUser(name: string): Promise<void> {
+        
     }
 
     updateName({ name, actualName }: UserUpdateNameDTO): Promise<void> {
